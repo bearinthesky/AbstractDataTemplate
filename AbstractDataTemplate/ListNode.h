@@ -17,5 +17,19 @@ template <typename T> struct ListNode {		//列表节点类，双向列表的形式表示
 };//ListNode
 
   //定义和声明对于模板来说是得在同一个头文件里面
-  //
+template <typename T>
+ListNodePosi(T) ListNode<T>::insertAsPred(T const& e) {
+	ListNodePosi(T) x = new ListNode(e, pred, this);
+	pred->succ = x;
+	pred = x;
+	return x;
+}
+
+template <typename T>
+ListNodePosi(T) ListNode<T>::insertAsSucc(T const& e) {
+	ListNodePosi(T) x = new ListNode(e, this, succ);
+	succ->pred = x;
+	succ = x;
+	return x;
+}
 
