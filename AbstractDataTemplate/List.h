@@ -173,7 +173,140 @@ void List<T>::traverse(VST& visit) {
 		visit(p->data);
 }
 
+template <typename T> int List<T>::uniquify() {
+	if (_size < 2)return 0;
+	int oldSize = _size;
+	ListNodePosi(T) p=first();
+	ListNodePosi(T) q ;
+	while (trailer != (q = p->succ)) {
+		if (p->data != q->data)p = q;
+		else
+			remove(q);
+	}
+	return oldSize - _size;
+
+}
+
+template <typename T>
+ListNodePosi(T) List<T>::search(T const& e, int n,ListNodePosi(T) p)const {
+	while (0 <= n--) {
+		if (((p = p->pred)->data) <= e)break;
+	}
+	return p;
+}
+
+template <typename T> void List<T>::sort(ListNodePosi(T)p, int n) {
+	switch (rand() % 3) {
+	case 1:insertionSort(); break;		//≤Â»Î≈≈–Ú
+	case 2:selectionSort(): break;		//—°‘Ò≈≈–Ú
+	default:mergeSort(p, n); break;		//πÈ≤¢≈≈–Ú
+	}
+}
+
+template <typename T> void List<T>::insertionSort(ListNodePosi(T)p, int n) {	//≤Â»Î≈≈–Ú
+	for (int r = 0; r < n; r++) {
+		insertAfter(search(p->data, r, p), p->data);
+		p = p->succ;
+		remove(p->pred);
+	}
+}
+
 template <typename T> 
+void List<T>::selectionSort(ListNodePosi(T) p, int n) {
+	ListNodePosi(T) head = p->pred;
+	ListNodePosi(T) tail = p;
+	for (int i = 0; i < n; i++) {
+		tail = tail->succ;
+	}
+	while (n>1) {
+		ListNodePosi(T) max = selectMax(head->succ, n);
+		insertBefore(tail, remove(max));
+		tail = tail->pred;
+		n--;
+	}
+}
+
+template <typename T>
+ListNodePosi(T) List<T>::selectMax(ListNodePosi(T) p, int n) {
+	ListNodePosi(T) max = p;
+	for (ListNodePosi(T) cur = p;1<n; n--)
+		if (((cur=cur->succ)->data) >= (max->data))max = cur;
+	return max;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
